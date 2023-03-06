@@ -13,8 +13,9 @@ while(true){
 
 Wait(In);
 Wait(mutex);
-read_count++;
-if (read_count==1)  Wait(wrt);
+read_count++; //read_count is used to keep track of no.of readers inside the C.S
+if (read_count==1) 
+    Wait(wrt);
 Signal(mutex);
 Signal(In);
 
@@ -42,12 +43,13 @@ Signal(In);
 }
 ```
 ### Explaination
-In the above pseudocode, I have taken three semaphores In,mutex,wrt which are initialised to 1. To remove the priority between the readers and writers, I have used an
-extra semaphore compared to the pseudocode expalined in the class. The main idea of using "In" semaphore is to remove the priority between readers and writers and 
-control the starvation. In the pseudocode explained in the class we can observe that writers can't enter into the critical section when readers keep on comming , which
-leads to starvation. So to avoid starvation, I have used FCFS concept. Among the readers and writers those who comes first will enter into the ready queue and execute
-their respective codes. If readers comes after writer then readers need to wait untill writer leaves the C.S. If writer comes after readers then writer has to wait
-until all the readers leave the C.S i.e, when read_count=0 then last reader will signal writer using wrt semaphore.
+In the above pseudocode, I have taken three semaphores In,mutex,wrt which are initialised to 1. Semaphores "mutex" and "wrt" have the same usage as in case of
+pseudocode explained in class. But to remove the priority between the readers and writers, I have used an extra semaphore(In). The main idea of using "In" semaphore is
+to remove the priority between readers and writers and control the starvation. In the pseudocode explained in the class we can observe that writers can't enter into
+the critical section when readers keep on comming , which leads to starvation. So to avoid starvation, I have used FCFS concept. Among thereaders and writers those who
+comes first will enter into the ready queue and execute their respective codes. If readers comes after writer then readers need to wait untill writer leaves the C.S.
+If writer comes after readers then writer has to wait until all the readers leave the C.S i.e, when read_count=0 then last reader will signal writer using wrt
+semaphore.
 
 ### Conclusion
 
