@@ -63,7 +63,7 @@ counter_in = 0 (variable)
 counter_out= 0 (variable)
 bool_wait  = 0 (boolian)
 
-### Pseudocode foe Readers
+### Optimised Pseudocode for Readers
 ```c++
 while(true){
 Wait(in);
@@ -79,7 +79,7 @@ if (wait==1 && counter_in == counter_out)
 Signal(out);
 }
 ```
-### Pseudocode foe Writers
+### Optimised Pseudocode for Writers
 ```c++
 while(true){
 Wait(in);
@@ -97,14 +97,4 @@ if(counter_in == counter_out)
 Signal(in);
 }
 ```
-
-
-
-
-
-
-
-
-
-
 
